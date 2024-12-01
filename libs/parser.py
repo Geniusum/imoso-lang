@@ -36,7 +36,7 @@ class Parser():
                         if char in lexical.Other.Char.KW_NAME:
                             actual_word += char.lower()
                         
-                        if (char == lexical.Other.Char.SPACE or last_char):
+                        if char == lexical.Other.Char.SPACE or last_char:
                             step = 1
                             
                             parsed.append({
@@ -56,14 +56,17 @@ class Parser():
                     elif step == 1:
                         if char in lexical.Other.Char.KW_NAME:
                             actual_word += char.lower()
+                        
+                        if char != lexical.Other.Char.SPACE:
+                            actual_raw += char
 
-                        if (char == lexical.Other.Char.SPACE or last_char):
-                            if not actual_word in lexical.Lexical.Operators.keys():
+                        if char == lexical.Other.Char.SPACE or last_char:
+                            if not actual_word in lexical.Lexical.Operators.keys() and actual_word == actual_raw.lower():
                                 # error.Error("Syntax", "Not a valid operator", lines[line_index - 1], line_index, line_char_index)
                                 # self.end_func()
                                 # break
 
-                                parsed[-1]["content"].append
+                                parsed[-1]["content"].append({"ltype": "raw", "value": actual_raw})
                             else:
                                 parsed[-1]["content"].append(lexical.Lexical.Operators[actual_word])
 
@@ -71,3 +74,5 @@ class Parser():
 
                 elif char != lexical.Other.Char.SPACE and space_before:
                     space_before = False
+        
+        print(parsed)

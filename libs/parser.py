@@ -52,7 +52,6 @@ class Parser():
                             parsed[-1]["content"].append(lexical.Lexical.Keywords[actual_word])
 
                             actual_word = ""
-                            actual_raw = ""
                     elif step == 1:
                         if char in lexical.Other.Char.KW_NAME:
                             actual_word += char.lower()
@@ -70,7 +69,8 @@ class Parser():
                             else:
                                 parsed[-1]["content"].append(lexical.Lexical.Operators[actual_word])
 
-                                actual_word = ""
+                            actual_word = ""
+                            actual_raw = ""
 
                 elif char != lexical.Other.Char.SPACE and space_before:
                     space_before = False

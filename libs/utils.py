@@ -1,0 +1,1 @@
+def void(*args, **kwargs): return None

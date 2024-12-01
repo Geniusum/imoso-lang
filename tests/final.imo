@@ -1,0 +1,15 @@
+append my_json_file as foo
+
+// Set existant fields
+set foo.my_username to string{Genius_um}
+set foo.my_password to function{sha1 string{1234}}
+
+// Create fields
+create foo.my_activities to list{string{Work} string{Sleep}}
+create foo.my_emails to dict{
+    personnal string{genius_um@gmail.com}
+    professional string{genius_um@mazegroup.org}
+}
+
+save foo  // Save to the original json file
+save foo to my_second_json_file  // Save to a other json file
